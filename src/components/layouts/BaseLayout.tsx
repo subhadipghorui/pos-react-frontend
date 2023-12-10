@@ -19,6 +19,7 @@ import { useStore } from '../../store/rootStore';
 import { observer } from 'mobx-react-lite';
 import { Container } from '@mui/material';
 import AppDialog from '../dialog/AppDialog';
+import AppAlert from '../alert/AppAlert';
 
 interface Props {
   /**
@@ -122,6 +123,7 @@ const BaseLayout = (props: Props) => {
       <Container maxWidth="lg">
       <Box component="main" sx={{ p: 3 }}>
         <Toolbar />
+        <AppAlert />
         <Outlet />
         <AppDialog />
       </Box>
