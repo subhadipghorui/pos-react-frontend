@@ -203,4 +203,28 @@ export default class ProductStore {
         dialogText: "Are you sure you want to delete this item ?"
       })
   }
+
+  
+   //   Api Calls
+   getList = async (postData:any) => {
+    try {
+          const response = await fetch(this.BASE_URL + '/getList', {
+              method: 'POST',
+              headers: {
+                  'Authorization': `Bearer ${this.rootStore.authStore.token}`,
+                  'Content-Type': 'application/json', // You can adjust this header as needed
+              },
+              body: JSON.stringify(postData)
+          })
+          const data = await response.json();
+          if (data.error) {
+              this.rootStore.handleError(response.status, `HTTP Request failed: ${response.status} ${response.statusText}`, data);
+              return Promise.reject(data)
+          } else {
+              return Promise.resolve(data.data.products)
+          }
+      } catch (error: any) {
+          this.rootStore.handleError(419, "Something went wrong!", error)
+      }
+  }
 }

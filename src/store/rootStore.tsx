@@ -5,6 +5,7 @@ import CustomerStore from "./customerStore";
 import DialogStore from "./dialogStore";
 import ProductStore from "./productStore";
 import AlertStore from "./alertStore";
+import OrderStore from "./orderStore";
 
 if (process.env.NODE_ENV === "development") {
     const { enableLogging } = require('mobx-logger');
@@ -16,6 +17,7 @@ export interface IRootStore {
     authStore: AuthStore;
     customerStore: CustomerStore;
     productStore: ProductStore;
+    orderStore: OrderStore;
     dialogStore: DialogStore;
     alertStore: AlertStore;
     handleError: Function;
@@ -29,6 +31,7 @@ export class RootStore implements IRootStore{
     productStore: ProductStore;
     dialogStore: DialogStore;
     alertStore: AlertStore;
+    orderStore: OrderStore;
 
     constructor() {
        console.log("RootStore")
@@ -37,6 +40,7 @@ export class RootStore implements IRootStore{
        this.productStore = new ProductStore(this)
        this.dialogStore = new DialogStore(this)
        this.alertStore = new AlertStore(this)
+       this.orderStore = new OrderStore(this)
     }
 
     public handleError = (errorCode: number | null = null, errorMessage: string, errorData: any) => {
