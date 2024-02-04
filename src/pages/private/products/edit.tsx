@@ -196,7 +196,7 @@ const ProductEdit = () => {
               fullWidth
               id="image"
               type='file'
-              label="Zip code"
+              label="Image"
               variant="filled"
               focused
               onChange={(e: any) => {
